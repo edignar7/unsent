@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply h-full;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply h-full bg-cream-100 text-charcoal-800 antialiased;
+    @apply dark:bg-charcoal-900 dark:text-cream-100;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-stone-400/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-400/50;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-sage-300/30;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3;
+    @apply font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-sage-300 text-white hover:bg-sage-400;
+    @apply focus:ring-sage-300;
+  }
+
+  .btn-secondary {
+    @apply bg-cream-300 text-charcoal-800 hover:bg-cream-200;
+    @apply dark:bg-charcoal-700 dark:text-cream-100 dark:hover:bg-charcoal-600;
+    @apply focus:ring-stone-400;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-stone-500 hover:bg-cream-300;
+    @apply dark:hover:bg-charcoal-700;
+  }
+
+  .card {
+    @apply bg-cream-50 rounded-2xl p-4 shadow-sm;
+    @apply dark:bg-charcoal-800;
+    @apply transition-all duration-200;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer;
+    @apply hover:shadow-md hover:scale-[1.01];
+    @apply active:scale-[0.99];
+  }
+
+  .input {
+    @apply w-full rounded-xl border-2 border-cream-300 bg-cream-50 px-4 py-3;
+    @apply text-charcoal-800 placeholder:text-stone-400;
+    @apply focus:border-sage-300 focus:outline-none focus:ring-0;
+    @apply dark:border-charcoal-700 dark:bg-charcoal-800 dark:text-cream-100;
+    @apply transition-colors duration-200;
+  }
+
+  .textarea {
+    @apply input resize-none;
+    @apply min-h-[120px];
+  }
+
+  .page-container {
+    @apply min-h-full px-4 pb-24 pt-6;
+    @apply max-w-lg mx-auto;
+  }
+
+  .section-title {
+    @apply text-lg font-medium text-charcoal-800;
+    @apply dark:text-cream-100;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-stone-500;
+    @apply dark:text-stone-400;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fadeIn 0.3s ease-out, slideUp 0.3s ease-out;
+  }
+}
