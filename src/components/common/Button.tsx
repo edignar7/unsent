@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
 interface ButtonProps {
@@ -56,7 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || isLoading}
     >
       {isLoading ? (
-        <span className="animate-spin mr-2">⏳</span>
+        <span className="animate-spin mr-2"></span>
       ) : Icon && iconPosition === 'left' ? (
         <Icon className="w-5 h-5 mr-2" />
       ) : null}
