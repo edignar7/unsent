@@ -1,14 +1,19 @@
 ﻿import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
+  children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
   isLoading?: boolean;
   fullWidth?: boolean;
+  className?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,7 +26,8 @@ export const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   className = '',
   disabled,
-  ...props
+  type = 'button',
+  onClick,
 }) => {
   const variants = {
     primary: 'bg-sage-300 text-white hover:bg-sage-400 focus:ring-sage-300',
@@ -39,6 +45,8 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <motion.button
       whileTap={{ scale: 0.98 }}
+      type={type}
+      onClick={onClick}
       className={`
         inline-flex items-center justify-center font-medium transition-all duration-200
         focus:outline-none focus:ring-2 focus:ring-offset-2
@@ -46,7 +54,6 @@ export const Button: React.FC<ButtonProps> = ({
         ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}
       `}
       disabled={disabled || isLoading}
-      {...props}
     >
       {isLoading ? (
         <span className="animate-spin mr-2">⏳</span>
